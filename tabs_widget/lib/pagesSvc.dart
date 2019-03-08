@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 class MyCustomPage extends StatelessWidget {
-  IconData _icon;
-  String _text;
+  
+  final IconData _icon;
+  final String _text;
 
   MyCustomPage(this._icon, this._text);
 

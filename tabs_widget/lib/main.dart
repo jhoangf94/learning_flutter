@@ -37,6 +37,21 @@ class _MyTabsState extends State<MyTabs> with SingleTickerProviderStateMixin {
           ],
         ),
       ),
+      drawer: Drawer(
+        child: ListView(
+          children: <Widget>[
+            DrawerHeader(
+              child: Center(
+                child: Icon(Icons.face,size: 100.0,),
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.favorite),
+              title: Text("i'm the best"),
+            )
+          ],
+        ),
+      ),
       body: TabBarView(
         controller: tabController,
         children: <Widget>[
