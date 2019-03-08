@@ -5,7 +5,7 @@ import 'dart:io';
 
 class Game {
   
-  final List<MyContainer> options;
+  final List<MyContainer2> options;
   List<int> sequence = [];
   List<int> sequenceUser = [];
   int tap = 0;
@@ -28,8 +28,10 @@ class Game {
     // Mostrar la secuencia al usuario
     sequence.forEach((i) {
       print("${options[i].title}");
-      options[i].color = Colors.white12;
-      sleep(const Duration(seconds: 2));
+      Color color =  options[i].color;
+      options[i].color = color == Colors.yellow ? Colors.black : Colors.red;
+      options[i].animation();
+      // sleep(const Duration(seconds: 2));
     });
   }
 

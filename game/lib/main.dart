@@ -10,11 +10,11 @@ void main() {
 }
 
 class MyGame extends StatefulWidget {
-  static List<MyContainer> options = [
-    MyContainer(title: "A", color: Colors.yellow, id: 0),
-    MyContainer(title: "B", color: Colors.blue, id: 1),
-    MyContainer(title: "C", color: Colors.red, id: 2),
-    MyContainer(title: "D", color: Colors.green, id: 3)
+  static List<MyContainer2> options = [
+    MyContainer2(title: "A", color: Colors.yellow, id: 0),
+    MyContainer2(title: "B", color: Colors.blue, id: 1),
+    MyContainer2(title: "C", color: Colors.red, id: 2),
+    MyContainer2(title: "D", color: Colors.green, id: 3)
   ];
 
   static int tap = 0;
@@ -28,7 +28,7 @@ class MyGame extends StatefulWidget {
 
 class _MyGameState extends State<MyGame> {
 
-  List<MyContainer> options;
+  List<MyContainer2> options;
   Game game;
 
   _MyGameState({this.options, this.game});

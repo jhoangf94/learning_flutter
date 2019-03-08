@@ -1,12 +1,35 @@
 import 'package:flutter/material.dart';
 import 'main.dart';
 
-class MyContainer extends Container {
+class MyContainer2 extends StatefulWidget {
   String title;
   Color color;
   int id;
 
-  MyContainer({this.title, this.color, this.id});
+  MyContainer2({this.title, this.color, this.id});
+
+  _MyContainer2State createState() =>
+      _MyContainer2State(title: title, color: color, id: id);
+
+  void animation() {
+    createState().initState();
+  }
+}
+
+class _MyContainer2State extends State<MyContainer2> {
+  String title;
+  Color color;
+  int id;
+
+  _MyContainer2State({this.title, this.color, this.id});
+
+  void ani() {
+    setState(() {
+      Color oldColor = color;
+      color = Colors.white10;
+      color = oldColor;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,3 +62,20 @@ class MyContainer extends Container {
     );
   }
 }
+
+// class MyContainer extends Container {
+//   String title;
+//   Color color;
+//   int id;
+
+//   MyContainer({this.title, this.color, this.id});
+
+//   void animation(){
+//     sets
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return
+//   }
+// }
