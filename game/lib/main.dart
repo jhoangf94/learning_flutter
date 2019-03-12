@@ -10,35 +10,27 @@ void main() {
 }
 
 class MyGame extends StatefulWidget {
-  static List<MyContainer2> options = [
+
+  static final List<MyContainer2> options = [
     MyContainer2(title: "A", color: Colors.yellow, id: 0),
     MyContainer2(title: "B", color: Colors.blue, id: 1),
     MyContainer2(title: "C", color: Colors.red, id: 2),
     MyContainer2(title: "D", color: Colors.green, id: 3)
   ];
 
-  static int tap = 0;
-  static Game game = Game(options: options);
+  final Game game = Game(options: options);
 
   @override
   _MyGameState createState() {
-    return _MyGameState(options: options, game: game);
+    return _MyGameState();
   }
 }
 
 class _MyGameState extends State<MyGame> {
 
-  List<MyContainer2> options;
-  Game game;
-
-  _MyGameState({this.options, this.game});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("My Game"),
-      ),
       body: Container(
         child: Center(
           child: Column(
@@ -46,7 +38,9 @@ class _MyGameState extends State<MyGame> {
             children: [
               RaisedButton(
                 onPressed: () {
-                  game.start();
+                  setState(() {
+                    widget.game.start();
+                  });
                 },
                 child: Text("Start Game"),
                 color: Colors.orangeAccent,
@@ -56,11 +50,11 @@ class _MyGameState extends State<MyGame> {
                 children: <Widget>[
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [options[0], options[1]],
+                    children: [_buildWidget(MyGame.options[0]), _buildWidget(MyGame.options[1])],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [options[2], options[3]],
+                    children: [_buildWidget(MyGame.options[2]), _buildWidget(MyGame.options[3])],
                   ),
                 ],
               ),
@@ -70,4 +64,17 @@ class _MyGameState extends State<MyGame> {
       ),
     );
   }
+  
+  Widget _buildWidget(MyContainer2 item){
+    if (widget.game.sequence!= null && widget.game.sequence.length <= 0) {return item;}
+    int index = widget.game.tap;
+    bool isSame = widget.game.options[index] == item;
+    if(isSame){
+      var newItem = MyContainer2(id: item.id, title: item.title,color: item.color,animate: true,);
+      item = null;
+      return newItem;
+    }
+    return item;
+  }
+
 }

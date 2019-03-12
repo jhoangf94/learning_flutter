@@ -1,19 +1,18 @@
-import 'package:flutter/material.dart';
 import 'myContainer.dart';
 import 'dart:math';
-import 'dart:io';
 
 class Game {
-  
   final List<MyContainer2> options;
   List<int> sequence = [];
   List<int> sequenceUser = [];
   int tap = 0;
+  bool inGame = false;
 
   Game({this.options});
 
   void start() {
     tap = 0;
+    inGame = false;
     sequence = [];
     sequenceUser = [];
     generateNextItem();
@@ -25,14 +24,6 @@ class Game {
     // Genera un indice random
     int randomIndex = Random().nextInt(options.length - 1);
     sequence.add(randomIndex);
-    // Mostrar la secuencia al usuario
-    sequence.forEach((i) {
-      print("${options[i].title}");
-      Color color =  options[i].color;
-      options[i].color = color == Colors.yellow ? Colors.black : Colors.red;
-      options[i].animation();
-      // sleep(const Duration(seconds: 2));
-    });
   }
 
   void addItemToSequenceUser(int idItem) {
