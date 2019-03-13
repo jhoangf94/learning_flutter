@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/animation.dart';
 import 'main.dart';
+import 'game.dart' as game;
 
 class MyContainer2 extends StatefulWidget {
   String title;
@@ -11,30 +12,19 @@ class MyContainer2 extends StatefulWidget {
   MyContainer2({this.title, this.color, this.id, this.animate = false});
 
   _MyContainer2State createState() => _MyContainer2State();
+
+  void elState(){
+    createState().myState();
+  }
 }
 
-class _MyContainer2State extends State<MyContainer2> with SingleTickerProviderStateMixin {
+class _MyContainer2State extends State<MyContainer2> {
 
-  AnimationController controller;
-  Animation<double> animation;
 
-  @override
-  void initState() {
-    super.initState();
-    controller = AnimationController(vsync: this, duration: Duration(seconds: 3));
-    animation = Tween<double>(begin: 20, end: 100).animate(controller);
-
-    animation.addStatusListener((status){
-      print(status == AnimationStatus.completed);
+  void myState(){
+    setState(() {
+      
     });
-    
-    controller.forward();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    controller.dispose();
   }
 
   @override
@@ -43,65 +33,37 @@ class _MyContainer2State extends State<MyContainer2> with SingleTickerProviderSt
   }
 
   Widget _animatedContainer() {
-    
-    if (widget.animate) {
-      setState(() {
-        controller.forward();
-      });
-    }
-    return  _bluidWidgetWithOutAnimaion();
+    return _bluidWidgetWithOutAnimaion();
   }
 
   Widget _bluidWidgetWithOutAnimaion() {
-    return GestureDetector(
-      child: Container(
-        child: Center(
-          child: Text(widget.title,
-              style: TextStyle(
-                  fontSize: 25.0,
-                  color: Colors.white,
-                  fontWeight: FontWeight.w100)),
-        ),
-        color: widget.color,
-        width: animation.value,
-        height: animation.value,
-        margin: EdgeInsets.all(5.0),
-      ),
-      onTap: () => _onTap(),
-    );
+    if (widget.animate) {
+      setState(() {});
+    }
+
+
   }
 
-  Widget _bluidWidgetWithAnimation() {
-    return GestureDetector(
-      child: AnimatedOpacity(
-        duration: Duration(seconds: 1),
-        opacity: widget.animate ? 0 : 1,
-        child: Container(
-          child: Center(
-            child: Text(widget.title,
-                style: TextStyle(
-                    fontSize: 25.0,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w100)),
-          ),
-          color: widget.color,
-          width: 100.0,
-          height: 100.0,
-          margin: EdgeInsets.all(5.0),
-        ),
-      ),
-      onTap: () => _onTap(),
-    );
+  Widget _change() {
+    if (widget.animate) {
+      widget.animate = false;
+      return Icon(Icons.star_border);
+    }
+    return Text(widget.title,
+        style: TextStyle(
+            fontSize: 25.0, color: Colors.white, fontWeight: FontWeight.bold));
   }
 
   void _onTap() {
-    // MyGame.game.addItemToSequenceUser(widget.id);
-    // if (!MyGame.game.isValidItemTap()) {
-    //   showDialog(
-    //       context: context,
-    //       child: Dialog(
-    //         child: Text("Perdiste!!"),
-    //       ));
-    // }
+    setState(() {});
+/*     MyGame.game.addItemToSequenceUser(widget.id);
+    if (!MyGame.game.isValidItemTap()) {
+      showDialog(
+          context: context,
+          child: AlertDialog(
+            title: Text("Eres un manco"),
+            content:  Text("Perdiste!!"),
+          ));
+    } */
   }
 }

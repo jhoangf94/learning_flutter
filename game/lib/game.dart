@@ -1,14 +1,11 @@
-import 'myContainer.dart';
 import 'dart:math';
 
 class Game {
-  final List<MyContainer2> options;
+  final int options = 3;
   List<int> sequence = [];
   List<int> sequenceUser = [];
   int tap = 0;
   bool inGame = false;
-
-  Game({this.options});
 
   void start() {
     tap = 0;
@@ -22,8 +19,9 @@ class Game {
 
   void generateNextItem() {
     // Genera un indice random
-    int randomIndex = Random().nextInt(options.length - 1);
+    int randomIndex = Random().nextInt(options);
     sequence.add(randomIndex);
+    print(sequence);
   }
 
   void addItemToSequenceUser(int idItem) {
