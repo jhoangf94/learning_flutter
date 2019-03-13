@@ -1,5 +1,5 @@
 const String users = ''' 
-{
+[
     {
       "id": 1,
       "name": "Leanne Graham",
@@ -230,4 +230,4 @@ const String users = '''
         "bs": "target end-to-end models"
       }
     }
-}''';
+]''';
